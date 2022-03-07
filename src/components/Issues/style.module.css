@@ -1,0 +1,72 @@
+.title {
+  background-color: #24292f;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 10px;
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.backIcon {
+  fill: rgba(64, 105, 255, 1);
+  margin-right: 6px;
+}
+
+.backBtn {
+  color: rgba(64, 105, 255, 1);
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.backBtn:hover {
+  color: rgba(75, 167, 255, 1);
+}
+
+.backBtn:hover .backIcon {
+  fill: rgba(75, 167, 255, 1);
+}
+
+.tabs {
+  margin-top: 40px;
+  margin-left: 20px;
+}
+
+.cards {
+  width: 65%;
+  margin: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.cardHeader {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.issuesWrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.warning {
+  padding: 30px;
+}

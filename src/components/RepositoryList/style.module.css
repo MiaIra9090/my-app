@@ -1,0 +1,75 @@
+.wrapper {
+  position: relative;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.card {
+  width: 300px;
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardHeader {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.cardWrapper {
+  width: 960px;
+  display: grid;
+  grid-template-columns: repeat(3, 320px);
+  margin: 0 auto;
+}
+
+@media (max-width: 950px) {
+  .cardWrapper {
+    width: 640px;
+    grid-template-columns: repeat(2, 320px);
+  }
+}
+@media (max-width: 640px) {
+  .cardWrapper {
+    width: 320px;
+    grid-template-columns: 320px;
+  }
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  height: 50px;
+}
+
+.dots {
+  width: 24px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+}

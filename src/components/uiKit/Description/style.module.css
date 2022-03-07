@@ -1,0 +1,11 @@
+.description {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0;
+}
+
+.emogi {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
