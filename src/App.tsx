@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import { Content } from "components";
 import { Issues } from "components/Issues";
@@ -34,12 +34,12 @@ const App: React.FC = () => {
         setTotalCount,
       }}
     >
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<Content />} />
           <Route path="issues/:id" element={<Issues />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </RepositoriesProvider>
   );
 };
