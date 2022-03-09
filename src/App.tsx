@@ -8,7 +8,7 @@ import "./App.css";
 import { RepositoriesProvider, Repository } from "./context";
 
 const App: React.FC = () => {
-  const [repositoryList, setList] = useState<Repository[]>([]); // TODO typing
+  const [repositoryList, setList] = useState<Repository[]>([]);
   const [error, setSearchError] = useState("");
   const [searchParams, setSearchParam] = useState("");
   const [page, setPage] = useState(1);
