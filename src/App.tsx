@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Navigate, Routes, Route } from "react-router-dom";
 
 import { Content } from "components";
 import { Issues } from "components/Issues";
@@ -8,7 +8,7 @@ import "./App.css";
 import { RepositoriesProvider, Repository } from "./context";
 
 const App: React.FC = () => {
-  const [repositoryList, setList] = useState<Repository[]>([]); // TODO typing
+  const [repositoryList, setList] = useState<Repository[]>([]);
   const [error, setSearchError] = useState("");
   const [searchParams, setSearchParam] = useState("");
   const [page, setPage] = useState(1);
@@ -38,6 +38,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Content />} />
           <Route path="issues/:id" element={<Issues />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </HashRouter>
     </RepositoriesProvider>
