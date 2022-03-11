@@ -4,7 +4,7 @@ import { Config, Reducer } from './types';
 import * as AC from './actions';
 
 const defaultRequestReducerConfig: Config = {
-  expiryTime: 10000, // миллисекунды
+  expiryTime: 10000, // ms
   isSaveFulfilled: true,
   isExpiryFulfilled: true,
   patterns: {
