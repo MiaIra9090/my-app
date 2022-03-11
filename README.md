@@ -1,5 +1,7 @@
 # Getting Started
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a5f31490-5b45-49ca-a132-cf123b15c4f5/deploy-status)](https://app.netlify.com/sites/myappgitsearch/deploys)
+
 This project is an example of git repositories search
 
 ## Available Scripts
