@@ -1,33 +1,34 @@
-import React from "react";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import {
   Card,
   CardActions,
-  CardHeader,
   CardContent,
+  CardHeader,
   CrossButton,
   Description,
-  IssueIcon,
   ForkIcon,
+  IssueIcon,
   StarIcon,
   Typography,
   Variant,
-} from "components/uiKit";
-import LinkIcon from "assets/images/link.png";
-import { formatDate } from "utils/Date";
+} from 'components/uiKit';
+import LinkIcon from 'assets/images/link.png';
+import { formatDate } from 'utils/Date';
+import RepoStore from 'store/repositories';
 
-import { useCurrentRepo } from "../../context";
-
-import css from "./style.module.css";
+import css from './style.module.css';
 
 interface Props {
   id: number;
   close: () => void;
-  emogies: Record<string, string>
+  emogies: Record<string, string>;
 }
 
 export const RepositoryCard: React.FC<Props> = ({ id, close, emogies }) => {
-  const repository = useCurrentRepo(id);
+  const repository = useSelector(RepoStore.selectors.getCurrentRepoId(Number(id)));
+  // const repository = useCurrentRepo(id);
   if (!repository) return null;
   const updatedAt = formatDate(new Date(repository.updated_at));
 
@@ -37,13 +38,7 @@ export const RepositoryCard: React.FC<Props> = ({ id, close, emogies }) => {
         <CrossButton id={`${id}_close`} onClick={close} />
         <Card className={css.card}>
           <CardHeader
-            avatar={
-              <img
-                src={repository.owner.avatar_url}
-                alt="avatar"
-                className={css.avatar}
-              />
-            }
+            avatar={<img src={repository.owner.avatar_url} alt="avatar" className={css.avatar} />}
             title={repository?.name}
             className={css.cardHeader}
           />

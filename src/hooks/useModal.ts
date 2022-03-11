@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react';
 
 /**
  * hook for modal control
@@ -10,7 +10,7 @@ export default function useModal(initialOpen?: boolean) {
 
   const close = useCallback(() => {
     setIsOpen(false);
-    setMeta("");
+    setMeta('');
   }, []);
 
   const open = useCallback((_meta?: unknown) => {

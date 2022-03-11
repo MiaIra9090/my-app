@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import { Button, Input, Typography, Variant } from "components/uiKit";
-import Logo from "assets/images/logo.png";
+import { Button, Input, Typography, Variant } from 'components/uiKit';
+import Logo from 'assets/images/logo.png';
 import useLoadInfo from 'hooks/useLoadInfo';
+import RepoStore from 'store/repositories';
 
-import { useRepositoriesInfo } from '../../context';
-
-import css from "./style.module.css";
+import css from './style.module.css';
 
 export const Header: React.FC = () => {
-  const { setSearchParam, searchParams: searchParam } = useRepositoriesInfo();
+  const searchParam = useSelector(RepoStore.selectors.getSearchParam);
   const [searchParams, setSearchParams] = useState(searchParam);
   const { searchRepository } = useLoadInfo();
 
@@ -19,7 +19,6 @@ export const Header: React.FC = () => {
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSearchParam(searchParams);
     searchRepository(searchParams, 1);
   };
 

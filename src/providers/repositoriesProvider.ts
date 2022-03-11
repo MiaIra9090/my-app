@@ -1,11 +1,11 @@
-import { AxiosError } from "axios";
+import { AxiosError } from 'axios';
 
-import * as RepositoriesApi from "api/githubApi";
-import { getErrorText } from "utils/Errors";
+import * as RepositoriesApi from 'api/githubApi';
+import { getErrorText } from 'utils/Errors';
 
 export interface Issue {
   id: string;
-  state: "open" | "closed";
+  state: 'open' | 'closed';
   title: string;
   body?: string;
 }
@@ -13,14 +13,10 @@ export interface Issue {
 export const getRepositoriesList = async (
   querySearch: string,
   page?: number,
-  per_page?: number
+  per_page?: number,
 ) => {
   try {
-    const res = await RepositoriesApi.searchRepositories(
-      querySearch,
-      page,
-      per_page
-    );
+    const res = await RepositoriesApi.searchRepositories(querySearch, page, per_page);
     return {
       repositories: res.data.items,
       totalCount: res.data.total_count,
@@ -32,11 +28,7 @@ export const getRepositoriesList = async (
   }
 };
 
-export const getIssuesList = async (
-  owner: string,
-  repoName: string,
-  page?: number
-) => {
+export const getIssuesList = async (owner: string, repoName: string, page?: number) => {
   try {
     const res = await RepositoriesApi.getIssues(owner, repoName, page);
     return {

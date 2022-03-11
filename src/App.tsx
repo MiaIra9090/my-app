@@ -1,39 +1,16 @@
-import React, { useState } from "react";
-import { HashRouter, Navigate, Routes, Route } from "react-router-dom";
+import React from 'react';
+import { Provider } from 'react-redux';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 
-import { Content } from "components";
-import { Issues } from "components/Issues";
+import { Content } from 'components';
+import { Issues } from 'components/Issues';
+import { store } from 'store';
 
-import "./App.css";
-import { RepositoriesProvider, Repository } from "./context";
+import './App.css';
 
 const App: React.FC = () => {
-  const [repositoryList, setList] = useState<Repository[]>([]);
-  const [error, setSearchError] = useState("");
-  const [searchParams, setSearchParam] = useState("");
-  const [page, setPage] = useState(1);
-  const [totalCount, setTotalCount] = useState(0);
-  const [searched, setSearched] = useState(false);
-  const [loadingRepositories, setLoading] = useState(false);
   return (
-    <RepositoriesProvider
-      value={{
-        repositoryList,
-        setList,
-        error,
-        setSearchError,
-        searched,
-        setSearched,
-        setLoading,
-        loadingRepositories,
-        searchParams,
-        setSearchParam,
-        page,
-        setPage,
-        totalCount,
-        setTotalCount,
-      }}
-    >
+    <Provider store={store}>
       <HashRouter>
         <Routes>
           <Route path="/" element={<Content />} />
@@ -41,7 +18,7 @@ const App: React.FC = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </HashRouter>
-    </RepositoriesProvider>
+    </Provider>
   );
 };
 

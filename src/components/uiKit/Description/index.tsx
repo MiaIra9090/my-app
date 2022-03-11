@@ -1,8 +1,8 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from 'react';
 
-import { Typography, Variant } from "components/uiKit";
+import { Typography, Variant } from 'components/uiKit';
 
-import css from "./style.module.css";
+import css from './style.module.css';
 
 interface Props {
   text?: string;
@@ -11,10 +11,13 @@ interface Props {
 
 export const Description: React.FC<Props> = ({ text, emogies }) => {
   const getText = useCallback(() => {
-    return text?.split(":").map((elem, index) => {
+    return text?.split(':').map((elem, index) => {
       if (!elem) return null;
       if (emogies[elem]) {
-        return <img key={`${elem}${index}`} src={emogies[elem]} alt="emogi" className={css.emogi} />;
+        return (
+          // eslint-disable-next-line react/no-array-index-key
+          <img key={`${elem}${index}`} src={emogies[elem]} alt="emogi" className={css.emogi} />
+        );
       }
       return elem;
     });
