@@ -47,6 +47,7 @@ const config = {
     'no-use-before-define': 'off',
     'import/prefer-default-export': 'off',
     'camelcase': 'off',
+    "@typescript-eslint/no-explicit-any": "off",
     '@typescript-eslint/camelcase': 'off',
     "react-hooks/exhaustive-deps": "off",
     "react/require-default-props": "off",

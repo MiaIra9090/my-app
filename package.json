@@ -42,9 +42,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
     "eject": "craco eject",
-    "coverage": "craco test --coverage --collectCoverageFrom=src/utils/**/*.ts --watchAll=false"
+    "test": "craco test --coverage --collectCoverageFrom=src/utils/**/*.ts --watchAll=false"
   },
   "eslintConfig": {
     "extends": [
