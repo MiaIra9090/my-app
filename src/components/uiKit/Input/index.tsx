@@ -1,5 +1,5 @@
-import React from "react";
-import * as UiKit from "@mui/material";
+import React from 'react';
+import * as UiKit from '@mui/material';
 
 import css from './style.module.css';
 

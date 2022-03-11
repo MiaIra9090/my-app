@@ -1,67 +1,62 @@
-import React, { useCallback, useMemo, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Button, Loader, Tabs, Typography, Variant } from "components/uiKit";
-import Logo from "assets/images/logo.png";
-import { Issue, getIssuesList } from "providers/repositoriesProvider";
+import { Button, Loader, Tabs, Typography, Variant } from 'components/uiKit';
+import Logo from 'assets/images/logo.png';
+import RepoStore from 'store/repositories';
+import { AppDispatch } from 'store';
 
-import { useCurrentRepo } from "../../context";
-
-import { IssueList } from "./IssueList";
-import css from "./style.module.css";
+import { IssueList } from './IssueList';
+import css from './style.module.css';
 
 export enum SECTIONS {
-  all = "all",
-  open = "open",
-  closed = "closed",
+  all = 'all',
+  open = 'open',
+  closed = 'closed',
 }
 
 export const Issues: React.FC = () => {
   const params = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const { id } = params;
-  const repository = useCurrentRepo(Number(id));
-  const [issues, setIssues] = useState<Issue[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const repository = useSelector(RepoStore.selectors.getCurrentRepoId(Number(id)));
+  const issues = useSelector(RepoStore.selectors.getIssues);
+  const isLoadingIssues = useSelector(RepoStore.selectors.getIsIssuesLoading);
+  const isLoadedIssues = useSelector(RepoStore.selectors.getIsLoadedIssues);
+  const error = useSelector(RepoStore.selectors.getErrorIssues);
   const sectionValues = Object.values(SECTIONS);
   const [tab, setTab] = useState(sectionValues[0]);
   const [currentPage, setPage] = useState<number>(NaN);
 
+  const openIssues = issues.filter((issue) => issue.state === 'open');
+  const closedIssues = issues.filter((issue) => issue.state === 'closed');
+
   const loadIssues = useCallback(async () => {
     if (!repository) return;
-    const res = await getIssuesList(
-      repository.owner.login,
-      repository.name,
-      currentPage
+    await dispatch(
+      RepoStore.actions.loadIssueList({
+        owner: repository.owner.login,
+        repoName: repository.name,
+        page: currentPage,
+      }),
     );
     setPage((prev) => prev + 1);
-    setLoading(false);
-    if (res.issues) {
-      setIssues((prev) => [...prev, ...res.issues]);
-    }
-    if (res.error) setError(res.error);
-  }, [currentPage, repository]);
+  }, [currentPage, repository, issues]);
 
   useEffect(() => {
     if (repository) {
       loadIssues();
     } else {
-      if (!repository) navigate("../", { replace: true });
+      navigate('../', { replace: true });
     }
   }, [repository]);
 
   const goBack = () => {
-    navigate("../", { replace: true });
+    dispatch(RepoStore.actions.setIssues([]));
+    navigate('../', { replace: true });
   };
-
-  const openIssues = useMemo(() => {
-    return issues.filter((issue) => issue.state === "open");
-  }, [issues]);
-
-  const closedIssues = useMemo(() => {
-    return issues.filter((issue) => issue.state === "closed");
-  }, [issues]);
 
   const currentList = useMemo(() => {
     switch (tab) {
@@ -72,18 +67,17 @@ export const Issues: React.FC = () => {
       default:
         return issues;
     }
-  }, [tab, issues, openIssues, closedIssues]);
+  }, [tab, openIssues, closedIssues, issues]);
 
   const renderIssues = () => {
-    if (!loading && (!issues.length || error)) {
-      const text = error ? error : "There is no issue";
+    if (!isLoadingIssues && ((!isLoadedIssues && issues.length) || error)) {
+      const text = error || 'There is no issue';
       return (
         <Typography className={css.warning} variant={Variant.h5} align="center">
           {text}
         </Typography>
       );
     }
-
     const tabs = sectionValues.map((item) => ({
       label: item.toUpperCase(),
       value: item,
@@ -95,7 +89,7 @@ export const Issues: React.FC = () => {
           <Tabs<SECTIONS> tabs={tabs} setTab={setTab} />
         </div>
         <IssueList
-          loading={loading}
+          loading={isLoadingIssues}
           tab={tab}
           closedCount={closedIssues.length}
           openCount={openIssues.length}
@@ -105,7 +99,7 @@ export const Issues: React.FC = () => {
     );
   };
 
-  if (loading) return <Loader />;
+  if (isLoadingIssues || (!isLoadedIssues && !error)) return <Loader />;
 
   return (
     <div>
@@ -130,7 +124,7 @@ export const Issues: React.FC = () => {
         Go back
       </button>
       {renderIssues()}
-      {!loading && !!issues.length && (
+      {!isLoadingIssues && !!currentList.length && (
         <footer className={css.footer}>
           <Button onClick={loadIssues}>Load more</Button>
         </footer>

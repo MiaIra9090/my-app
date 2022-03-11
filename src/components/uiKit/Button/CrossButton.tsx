@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import css from "./style.module.css";
+import css from './style.module.css';
 
 interface Props {
   onClick(): void;
@@ -10,12 +10,7 @@ interface Props {
 export const CrossButton: React.FC<Props> = ({ onClick, id }) => {
   return (
     <button onClick={onClick} className={css.crossButton} id={id} type="button">
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -24,4 +19,4 @@ export const CrossButton: React.FC<Props> = ({ onClick, id }) => {
       </svg>
     </button>
   );
-}
+};

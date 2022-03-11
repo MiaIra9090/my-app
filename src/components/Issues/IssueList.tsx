@@ -1,18 +1,13 @@
-import React from "react";
-import { Pie } from "react-chartjs-2";
-import { Chart, ArcElement, registerables } from "chart.js";
+import React from 'react';
+import { Pie } from 'react-chartjs-2';
+import { ArcElement, Chart, registerables } from 'chart.js';
 
-import { Issue } from "providers/repositoriesProvider";
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  Typography,
-  Variant,
-} from "components/uiKit";
+import { Issue } from 'providers/repositoriesProvider';
+import { Card, CardContent, CardHeader, Typography, Variant } from 'components/uiKit';
 
-import { SECTIONS } from "./";
-import css from "./style.module.css";
+import { SECTIONS } from '.';
+
+import css from './style.module.css';
 
 interface Props {
   tab: SECTIONS;
@@ -25,14 +20,20 @@ interface Props {
 Chart.register(...registerables);
 Chart.register(ArcElement);
 
-export const IssueList: React.FC<Props> = ({ tab, closedCount, openCount, loading, currentList }) => {
+export const IssueList: React.FC<Props> = ({
+  tab,
+  closedCount,
+  openCount,
+  loading,
+  currentList,
+}) => {
   const state = {
-    labels: ["Open", "Closed"],
+    labels: ['Open', 'Closed'],
     datasets: [
       {
-        label: "Open",
-        backgroundColor: ["hsl(313, 73%, 46%)", "hsl(180, 70%, 50%)"],
-        hoverBackgroundColor: ["hsl(313, 73%, 36%)", "hsl(180, 70%, 20%)"],
+        label: 'Open',
+        backgroundColor: ['hsl(313, 73%, 46%)', 'hsl(180, 70%, 50%)'],
+        hoverBackgroundColor: ['hsl(313, 73%, 36%)', 'hsl(180, 70%, 20%)'],
         data: [openCount, closedCount],
       },
     ],
@@ -45,27 +46,22 @@ export const IssueList: React.FC<Props> = ({ tab, closedCount, openCount, loadin
       </Typography>
     );
   }
-
   return (
     <section className={css.issuesWrapper}>
       <div className={css.cards}>
         {currentList.map((issue, index) => (
-          <Card key={index} className={css.card}>
+          // eslint-disable-next-line react/no-array-index-key
+          <Card key={`${issue.id}_${index}`} className={css.card}>
             <div>
-              <CardHeader
-                title={`${index + 1}) ${issue.title}`}
-                className={css.cardHeader}
-              />
+              <CardHeader title={`${index + 1}) ${issue.title}`} className={css.cardHeader} />
               <CardContent>
-                <Typography variant={Variant.body2}>
-                  {issue.body || "No description"}
-                </Typography>
+                <Typography variant={Variant.body2}>{issue.body || 'No description'}</Typography>
               </CardContent>
             </div>
           </Card>
         ))}
       </div>
-      {tab === "all" && (
+      {tab === 'all' && (
         <div>
           <Pie data={state} />
         </div>

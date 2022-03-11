@@ -1,5 +1,5 @@
-import React from "react";
-import * as UiKit from "@mui/material";
+import React from 'react';
+import * as UiKit from '@mui/material';
 
 export interface PopoverClasses {
   /** Styles applied to the root element. */
@@ -9,13 +9,13 @@ export interface PopoverClasses {
 }
 
 interface Popover {
-  vertical: "top" | "bottom";
-  horizontal: "left" | "right";
+  vertical: 'top' | 'bottom';
+  horizontal: 'left' | 'right';
 }
 
 interface Props {
   anchorEl: Element | null;
-  variant?: "menu" | "selectedMenu";
+  variant?: 'menu' | 'selectedMenu';
   open: boolean;
   onClose?: () => void;
   PopoverClasses?: Partial<PopoverClasses>;

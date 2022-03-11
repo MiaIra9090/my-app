@@ -1,29 +1,22 @@
-import React from "react";
-import * as UiKit from "@mui/material";
+import React from 'react';
+import * as UiKit from '@mui/material';
 
 interface Props {
   disabled?: boolean;
-  color?:
-    | "inherit"
-    | "primary"
-    | "secondary"
-    | "success"
-    | "error"
-    | "info"
-    | "warning";
-  size?: "small" | "medium" | "large";
+  color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning';
+  size?: 'small' | 'medium' | 'large';
   onClick?: (ev: React.MouseEvent) => void;
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
   className?: string;
 }
 
 export const IconButton: React.FC<Props> = ({
   disabled,
-  color = "primary",
+  color = 'primary',
   children,
   onClick,
-  size = "medium",
-  type = "button",
+  size = 'medium',
+  type = 'button',
   className,
 }) => {
   return (

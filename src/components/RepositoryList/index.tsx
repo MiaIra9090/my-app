@@ -1,5 +1,6 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import {
   Button,
@@ -7,36 +8,34 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  Loader,
+  Description,
   IconButton,
+  Loader,
   Menu,
   MenuItem,
   Typography,
   Variant,
-  Description,
-} from "components/uiKit";
-import useModal from "hooks/useModal";
-import { RepositoryCard } from "components/RepositoryCard";
-import useLoadInfo from "hooks/useLoadInfo";
+} from 'components/uiKit';
+import useModal from 'hooks/useModal';
+import { RepositoryCard } from 'components/RepositoryCard';
+import useLoadInfo from 'hooks/useLoadInfo';
+import RepoStore from 'store/repositories';
 
-import { useRepositoriesInfo } from "../../context";
-
-import css from "./style.module.css";
+import css from './style.module.css';
 
 interface Props {
   emogies: Record<string, string>;
 }
 
 export const RepositoryList: React.FC<Props> = ({ emogies }) => {
-  const {
-    repositoryList,
-    error,
-    searched,
-    loadingRepositories,
-    searchParams,
-    page,
-    totalCount,
-  } = useRepositoriesInfo();
+  const repositoryList = useSelector(RepoStore.selectors.getRepositories);
+  const searched = useSelector(RepoStore.selectors.getIsLoadedRepos);
+  const loadingRepositories = useSelector(RepoStore.selectors.getIsRepoLoading);
+  const searchParams = useSelector(RepoStore.selectors.getSearchParam);
+  const page = useSelector(RepoStore.selectors.getPage);
+  const totalCount = useSelector(RepoStore.selectors.getTotalCount);
+  const error = useSelector(RepoStore.selectors.getError);
+
   const { searchRepository } = useLoadInfo();
   const navigate = useNavigate();
 
@@ -58,10 +57,10 @@ export const RepositoryList: React.FC<Props> = ({ emogies }) => {
   };
 
   const warningText = useMemo(() => {
-    if (!searched) return "Please, type repository name";
+    if (!searched) return 'Please, type repository name';
     if (error) return error;
-    if (!repositoryList.length) return "Not found";
-    return "";
+    if (!repositoryList.length) return 'Not found';
+    return '';
   }, [repositoryList.length, error, searched]);
 
   if (warningText && !loadingRepositories) {
@@ -74,7 +73,7 @@ export const RepositoryList: React.FC<Props> = ({ emogies }) => {
 
   const goToIssues = () => {
     navigate(`../issues/${selectedRepositoryId}`, { replace: true });
-  }
+  };
 
   return (
     <div className={css.wrapper}>
@@ -89,11 +88,7 @@ export const RepositoryList: React.FC<Props> = ({ emogies }) => {
               <div>
                 <CardHeader
                   avatar={
-                    <img
-                      src={repository.owner?.avatar_url}
-                      alt="avatar"
-                      className={css.avatar}
-                    />
+                    <img src={repository.owner?.avatar_url} alt="avatar" className={css.avatar} />
                   }
                   title={repository.name}
                   className={css.cardHeader}
@@ -104,14 +99,11 @@ export const RepositoryList: React.FC<Props> = ({ emogies }) => {
               </div>
               <CardActions className={css.actions}>
                 <div>
-                  <IconButton
-                    onClick={(ev) => handleClick(ev, repository.id)}
-                    size="small"
-                  >
+                  <IconButton onClick={(ev) => handleClick(ev, repository.id)} size="small">
                     <div className={css.dots}>
-                      <div className={css.dot}></div>
-                      <div className={css.dot}></div>
-                      <div className={css.dot}></div>
+                      <div className={css.dot} />
+                      <div className={css.dot} />
+                      <div className={css.dot} />
                     </div>
                   </IconButton>
                   <Menu
@@ -123,31 +115,31 @@ export const RepositoryList: React.FC<Props> = ({ emogies }) => {
                     PaperProps={{
                       elevation: 0,
                       sx: {
-                        overflow: "visible",
-                        filter: "drop-shadow(0px 2px 5px rgba(0,0,0,0.03))",
+                        overflow: 'visible',
+                        filter: 'drop-shadow(0px 2px 5px rgba(0,0,0,0.03))',
                         mt: 1.5,
-                        "& .MuiAvatar-root": {
+                        '& .MuiAvatar-root': {
                           width: 32,
                           height: 32,
                           ml: -0.5,
                           mr: 1,
                         },
-                        "&:before": {
+                        '&:before': {
                           content: '""',
-                          display: "block",
-                          position: "absolute",
+                          display: 'block',
+                          position: 'absolute',
                           top: 0,
                           right: 14,
                           width: 10,
                           height: 10,
-                          bgcolor: "background.paper",
-                          transform: "translateY(-50%) rotate(45deg)",
+                          bgcolor: 'background.paper',
+                          transform: 'translateY(-50%) rotate(45deg)',
                           zIndex: 0,
                         },
                       },
                     }}
-                    transformOrigin={{ horizontal: "right", vertical: "top" }}
-                    anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+                    transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                   >
                     <MenuItem onClick={open}>More details</MenuItem>
                     <MenuItem onClick={goToIssues}>Issues</MenuItem>
