@@ -173,7 +173,8 @@ const config = {
         'no-param-reassign': 'off',
       },
     },
-  ]
+  ],
+  ignorePatterns: ['cypress/*/*'],
 };
 
 module.exports.getConfigWithGlobals = function (globals) {
