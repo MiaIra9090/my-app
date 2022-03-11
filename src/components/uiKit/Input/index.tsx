@@ -1,6 +1,8 @@
 import React from 'react';
 import * as UiKit from '@mui/material';
 
+import { Color } from '../constants';
+
 import css from './style.module.css';
 
 interface Props {
@@ -10,7 +12,7 @@ interface Props {
   defaultValue?: string;
   autoComplete?: string;
   autoFocus?: boolean;
-  color?: 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
+  color?: Color;
   error?: boolean;
   id?: string;
   name?: string;

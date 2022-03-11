@@ -13,3 +13,18 @@ export enum Variant {
   button = 'button',
   overline = 'overline',
 }
+
+export enum Size {
+  small = 'small',
+  medium = 'medium',
+  large = 'large',
+}
+
+export enum Color {
+  primary = 'primary',
+  secondary = 'secondary',
+  success = 'success',
+  error = 'error',
+  info = 'info',
+  warning = 'warning',
+}
