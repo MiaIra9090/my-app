@@ -28,7 +28,7 @@ interface Props {
 
 export const RepositoryCard: React.FC<Props> = ({ id, close, emogies }) => {
   const repository = useSelector(RepoStore.selectors.getCurrentRepoId(Number(id)));
-  // const repository = useCurrentRepo(id);
+
   if (!repository) return null;
   const updatedAt = formatDate(new Date(repository.updated_at));
 
