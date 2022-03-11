@@ -1,4 +1,4 @@
-# e2e тестирование
+# e2e testing
 
-- чтобы запустить тесты, необходимо установить cypress глобально (npm i -g cypress@6.0.1)
-- тесты пишем на моках, мокаем все запросы
+- to start e2e testing install cypress
+- tests with mocks
