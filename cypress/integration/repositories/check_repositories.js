@@ -27,7 +27,7 @@ describe('Check repo search', () => {
     cy.getByTestId('search_button').should('be.disabled');
     cy.getByTestId('warning_text').contains('Please, type repository name').should('exist');
     cy.getByTestId('search_input').type('bootstrap');
-    cy.get('input[name=search_repository]').should('have.value', 'bootstrap')
+    cy.get('input[name=search_repository]').should('have.value', 'bootstrap');
     cy.getByTestId('search_button').should('not.be.disabled');
     cy.route({
       method: 'get',
