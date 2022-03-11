@@ -16,6 +16,7 @@ interface Props {
   name?: string;
   placeholder?: string;
   value: string;
+  testid?: string;
 }
 
 export const Input: React.FC<Props> = ({
@@ -31,6 +32,7 @@ export const Input: React.FC<Props> = ({
   name,
   placeholder,
   value,
+  testid,
 }) => {
   return (
     <UiKit.Input
@@ -47,6 +49,7 @@ export const Input: React.FC<Props> = ({
       placeholder={placeholder}
       value={value}
       className={css.input}
+      data-testid={testid}
     />
   );
 };

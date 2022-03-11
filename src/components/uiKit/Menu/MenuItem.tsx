@@ -7,11 +7,25 @@ interface Props {
   divider?: boolean;
   selected?: boolean;
   onClick?: () => void;
+  testid?: string;
 }
 
-export const MenuItem: React.FC<Props> = ({ children, disabled, divider, selected, onClick }) => {
+export const MenuItem: React.FC<Props> = ({
+  children,
+  disabled,
+  divider,
+  selected,
+  onClick,
+  testid,
+}) => {
   return (
-    <UiKit.MenuItem disabled={disabled} selected={selected} divider={divider} onClick={onClick}>
+    <UiKit.MenuItem
+      data-testid={testid}
+      disabled={disabled}
+      selected={selected}
+      divider={divider}
+      onClick={onClick}
+    >
       {children}
     </UiKit.MenuItem>
   );

@@ -107,7 +107,7 @@ export const Issues: React.FC = () => {
         <img src={Logo} alt="logo" className={css.logo} />
         <Typography variant={Variant.h4}>Issues</Typography>
       </div>
-      <button type="button" onClick={goBack} className={css.backBtn}>
+      <button type="button" data-testid="go_back_btn" onClick={goBack} className={css.backBtn}>
         <svg
           width="24"
           height="24"

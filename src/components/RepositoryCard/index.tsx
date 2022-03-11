@@ -33,7 +33,7 @@ export const RepositoryCard: React.FC<Props> = ({ id, close, emogies }) => {
   const updatedAt = formatDate(new Date(repository.updated_at));
 
   return (
-    <div className={css.wrapper}>
+    <div data-testid="card_modal" className={css.wrapper}>
       <div className={css.repository}>
         <CrossButton id={`${id}_close`} onClick={close} />
         <Card className={css.card}>
@@ -54,9 +54,9 @@ export const RepositoryCard: React.FC<Props> = ({ id, close, emogies }) => {
               <a
                 rel="noreferrer"
                 href={repository.svn_url}
-                data-testid="insurance_link"
                 target="_blank"
                 className={css.link}
+                data-testid="actual_githib_link"
               >
                 {repository.svn_url}
               </a>

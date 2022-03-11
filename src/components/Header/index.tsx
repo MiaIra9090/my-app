@@ -34,8 +34,9 @@ export const Header: React.FC = () => {
           placeholder="Repository search"
           name="search_repository"
           onChange={handleChange}
+          testid="search_input"
         />
-        <Button type="submit" disabled={!searchParams}>
+        <Button type="submit" testid="search_button" disabled={!searchParams}>
           Search
         </Button>
       </form>

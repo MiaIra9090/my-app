@@ -7,6 +7,7 @@ interface Props {
   size?: 'small' | 'medium' | 'large';
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
+  testid?: string;
 }
 
 export const Button: React.FC<Props> = ({
@@ -16,9 +17,17 @@ export const Button: React.FC<Props> = ({
   onClick,
   size = 'medium',
   type = 'button',
+  testid,
 }) => {
   return (
-    <UiKit.Button disabled={disabled} type={type} color={color} size={size} onClick={onClick}>
+    <UiKit.Button
+      data-testid={testid}
+      disabled={disabled}
+      type={type}
+      color={color}
+      size={size}
+      onClick={onClick}
+    >
       {children}
     </UiKit.Button>
   );

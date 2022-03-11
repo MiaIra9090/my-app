@@ -65,7 +65,7 @@ export const RepositoryList: React.FC<Props> = ({ emogies }) => {
 
   if (warningText && !loadingRepositories) {
     return (
-      <Typography variant={Variant.h6} align="center">
+      <Typography testid="warning_text" variant={Variant.h6} align="center">
         {warningText}
       </Typography>
     );
@@ -84,7 +84,7 @@ export const RepositoryList: React.FC<Props> = ({ emogies }) => {
         )}
         {repositoryList.map((repository) => {
           return (
-            <Card key={repository.id} className={css.card}>
+            <Card testid={`card_${repository.id}`} key={repository.id} className={css.card}>
               <div>
                 <CardHeader
                   avatar={
@@ -99,7 +99,11 @@ export const RepositoryList: React.FC<Props> = ({ emogies }) => {
               </div>
               <CardActions className={css.actions}>
                 <div>
-                  <IconButton onClick={(ev) => handleClick(ev, repository.id)} size="small">
+                  <IconButton
+                    testid={`details_${repository.id}`}
+                    onClick={(ev) => handleClick(ev, repository.id)}
+                    size="small"
+                  >
                     <div className={css.dots}>
                       <div className={css.dot} />
                       <div className={css.dot} />
@@ -141,8 +145,12 @@ export const RepositoryList: React.FC<Props> = ({ emogies }) => {
                     transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                   >
-                    <MenuItem onClick={open}>More details</MenuItem>
-                    <MenuItem onClick={goToIssues}>Issues</MenuItem>
+                    <MenuItem testid={`more_${repository.id}`} onClick={open}>
+                      More details
+                    </MenuItem>
+                    <MenuItem testid={`issues_${repository.id}`} onClick={goToIssues}>
+                      Issues
+                    </MenuItem>
                   </Menu>
                 </div>
               </CardActions>
