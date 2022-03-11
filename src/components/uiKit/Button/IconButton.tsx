@@ -8,6 +8,7 @@ interface Props {
   onClick?: (ev: React.MouseEvent) => void;
   type?: 'button' | 'submit' | 'reset';
   className?: string;
+  testid?: string;
 }
 
 export const IconButton: React.FC<Props> = ({
@@ -18,6 +19,7 @@ export const IconButton: React.FC<Props> = ({
   size = 'medium',
   type = 'button',
   className,
+  testid,
 }) => {
   return (
     <UiKit.IconButton
@@ -27,6 +29,7 @@ export const IconButton: React.FC<Props> = ({
       size={size}
       onClick={onClick}
       className={className}
+      data-testid={testid}
     >
       {children}
     </UiKit.IconButton>

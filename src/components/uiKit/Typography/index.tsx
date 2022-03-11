@@ -9,11 +9,25 @@ interface Props {
   align?: 'center' | 'inherit' | 'justify' | 'left' | 'right';
   noWrap?: boolean;
   className?: string;
+  testid?: string;
 }
 
-export const Typography: React.FC<Props> = ({ variant, children, align, noWrap, className }) => {
+export const Typography: React.FC<Props> = ({
+  variant,
+  children,
+  align,
+  noWrap,
+  className,
+  testid,
+}) => {
   return (
-    <UiKit.Typography variant={variant} align={align} noWrap={noWrap} className={className}>
+    <UiKit.Typography
+      data-testid={testid}
+      variant={variant}
+      align={align}
+      noWrap={noWrap}
+      className={className}
+    >
       {children}
     </UiKit.Typography>
   );

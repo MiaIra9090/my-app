@@ -51,7 +51,7 @@ export const IssueList: React.FC<Props> = ({
       <div className={css.cards}>
         {currentList.map((issue, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <Card key={`${issue.id}_${index}`} className={css.card}>
+          <Card testid={`issue_${issue.id}`} key={`${issue.id}_${index}`} className={css.card}>
             <div>
               <CardHeader title={`${index + 1}) ${issue.title}`} className={css.cardHeader} />
               <CardContent>

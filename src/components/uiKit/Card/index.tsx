@@ -5,11 +5,12 @@ interface Props {
   children: React.ReactNode;
   className?: string;
   onClick?: (id: React.MouseEvent<HTMLDivElement>) => void;
+  testid?: string;
 }
 
-export const Card: React.FC<Props> = ({ children, className, onClick }) => {
+export const Card: React.FC<Props> = ({ children, className, onClick, testid }) => {
   return (
-    <UiKit.Card className={className} onClick={onClick}>
+    <UiKit.Card data-testid={testid} className={className} onClick={onClick}>
       {children}
     </UiKit.Card>
   );
