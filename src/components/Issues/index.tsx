@@ -23,15 +23,14 @@ export const Issues: React.FC = () => {
   const { id } = params;
   const repository = useSelector(RepoStore.selectors.getCurrentRepoId(Number(id)));
   const issues = useSelector(RepoStore.selectors.getIssues);
+  const openIssues = useSelector(RepoStore.selectors.getOpenIssues);
+  const closedIssues = useSelector(RepoStore.selectors.getClosedIssues);
   const isLoadingIssues = useSelector(RepoStore.selectors.getIsIssuesLoading);
   const isLoadedIssues = useSelector(RepoStore.selectors.getIsLoadedIssues);
   const error = useSelector(RepoStore.selectors.getErrorIssues);
   const sectionValues = Object.values(SECTIONS);
   const [tab, setTab] = useState(sectionValues[0]);
   const [currentPage, setPage] = useState<number>(NaN);
-
-  const openIssues = issues.filter((issue) => issue.state === 'open');
-  const closedIssues = issues.filter((issue) => issue.state === 'closed');
 
   const loadIssues = useCallback(async () => {
     if (!repository) return;

@@ -21,3 +21,11 @@ export const getErrorIssues = getRequestError(AT.LOAD_ISSUES);
 
 export const getCurrentRepoId = (id: number) =>
   createSelector(getRepositories, (repositories) => repositories.find((item) => item.id === id));
+
+export const getOpenIssues = createSelector(getIssues, (issues) =>
+  issues.filter((issue) => issue.state === 'open'),
+);
+
+export const getClosedIssues = createSelector(getIssues, (issues) =>
+  issues.filter((issue) => issue.state === 'closed'),
+);

@@ -1,10 +1,12 @@
 import React from 'react';
 import * as UiKit from '@mui/material';
 
+import { Color, Size } from '../constants';
+
 interface Props {
   disabled?: boolean;
-  color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning';
-  size?: 'small' | 'medium' | 'large';
+  color?: Color;
+  size?: Size;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
   testid?: string;
@@ -12,10 +14,10 @@ interface Props {
 
 export const Button: React.FC<Props> = ({
   disabled,
-  color = 'primary',
+  color = Color.primary,
   children,
   onClick,
-  size = 'medium',
+  size = Size.medium,
   type = 'button',
   testid,
 }) => {

@@ -1,5 +1,5 @@
 export { Typography } from './Typography';
-export { Variant } from './constants';
+export { Color, Size, Variant } from './constants';
 export { Tabs } from './Tabs';
 export { Input } from './Input';
 export { Button } from './Button';

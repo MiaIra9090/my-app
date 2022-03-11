@@ -13,6 +13,7 @@ import {
   Loader,
   Menu,
   MenuItem,
+  Size,
   Typography,
   Variant,
 } from 'components/uiKit';
@@ -102,7 +103,7 @@ export const RepositoryList: React.FC<Props> = ({ emogies }) => {
                   <IconButton
                     testid={`details_${repository.id}`}
                     onClick={(ev) => handleClick(ev, repository.id)}
-                    size="small"
+                    size={Size.small}
                   >
                     <div className={css.dots}>
                       <div className={css.dot} />
